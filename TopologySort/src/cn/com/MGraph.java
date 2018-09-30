@@ -6,7 +6,7 @@ public class MGraph {
 	private int vertexNum;
 	private String[] vertexs;
 	private int [][]arc;
-	private int []in;//表示入度,这里需要假设第一个节点的入度为0
+	private int []in;//表示入度
 	
 	public void init(){
 		System.out.println("输入节点数:");
