@@ -26,6 +26,7 @@ public class MGraph {
 			}
 	}
 	
+	//每次找出入度为0的节点
 	public void topologySort(){
 		int next=0;
 		while(true){
