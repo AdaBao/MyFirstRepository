@@ -49,7 +49,7 @@ public class Sort {
 			System.out.print(arr[i]+" ");
 	}
 	
-	//插入排序
+	//插入排序,插入排序是简单排序中性能最好的
 	public static void insertSort(int[] arr){
 		if(arr==null||arr.length==0)
 			return;
@@ -193,5 +193,35 @@ public class Sort {
 	}
 	
 	
+	//快速排序,快排的某些步骤是可以优化的,此处未修改
+	public static void qSort(int[] arr){
+		if(arr==null||arr.length==0)
+			return;
+		
+		quickSort(0,arr.length-1,arr);
+		for(int i=0; i<arr.length; i++)
+			System.out.print(arr[i]+" ");
+	}
+	
+	private static void quickSort(int low,int high,int[] arr){
+		if(low<high){
+			int pivot=partition(low,high,arr);
+			quickSort(low,pivot-1,arr);
+			quickSort(pivot+1,high,arr);
+		}
+	}
+	
+	private static int partition(int low,int high,int[]arr){
+		int pivotValue=arr[low];
+		while(low<high){
+			while(arr[high]>=pivotValue&&high>low)
+				high--;
+			swap(arr,low,high);
+			while(arr[low]<=pivotValue&&low<high)
+				low++;
+			swap(arr,low,high);
+		}
+		return low;
+	}
 
 }
