@@ -54,13 +54,13 @@ public class Sort {
 		if(arr==null||arr.length==0)
 			return;
 		for(int i=1; i<arr.length; i++){
-			if(arr[i]<arr[i-1]){
+			if(arr[i]<arr[i-1]){// 从0到i-1已经排好序(升序),所以比较第i个数与第i-1个,来判断是否需要把第i个数插入到前面的序列中去
 				int x=arr[i];
 				int j=0;
 				for(j=i-1;j>=0&&arr[j]>x; j--){
 					arr[j+1]=arr[j];//后移
 				}
-				arr[j+1]=x;//插入
+				arr[j+1]=x;//插入  插入的位置正好是空出的位置,j此时是该位置的前一位
 			}
 		}
 		
