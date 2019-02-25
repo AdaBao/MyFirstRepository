@@ -152,6 +152,9 @@ public class Sort {
 			System.out.print(result[i]+" ");
 	}
 	
+	//归并排序就是不断把序列分割,然后两两排序,可以想象成一棵树,序列分割就是从上到下不断地扩展树,两两排序就是
+	//后序遍历,树的叶子节点其实就是序列中的每个元素,后序遍历使两两合并成一个父节点,父节点然后再合并,直至完毕
+	//待合并的两个序列都是有序的,merge方法就是合并方法
 	private static void mergeSort(int []arr,int []result,int start,int end){
 		if(start==end){
 			result[0]=arr[start];
@@ -168,6 +171,7 @@ public class Sort {
 	private static void merge(int[]result, int[] result1, int[]result2){
 		int i=0,j=0,k=0;
 		while(true){
+			//无论待合并的两个序列的长度相等与否,最后一定会出现一个序列剩余的情况,此时break掉就行,剩余序列直接加到result中就行
 			if(i>=result1.length||j>=result2.length)
 				break;
 			
@@ -183,7 +187,7 @@ public class Sort {
 				k++;
 			}
 		}
-		
+		//将result1或result2中的剩余序列加到result中
 		if(i>=result1.length){
 			for(;j<result2.length;j++){
 				result[k]=result2[j];
@@ -216,14 +220,19 @@ public class Sort {
 		}
 	}
 	
+	//这个方法的目的是把数列分成两部分,前半部分比pivotValue小,后半部分比pivotValue要大
 	private static int partition(int low,int high,int[]arr){
 		int pivotValue=arr[low];
 		while(low<high){
+			//从右到左
 			while(arr[high]>=pivotValue&&high>low)
 				high--;
+			//交换low和high
 			swap(arr,low,high);
+			//从左到右
 			while(arr[low]<=pivotValue&&low<high)
 				low++;
+			//交换low和high
 			swap(arr,low,high);
 		}
 		return low;
